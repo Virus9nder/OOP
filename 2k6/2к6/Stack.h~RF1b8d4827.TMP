@@ -1,0 +1,124 @@
+/*Класс - стек Stack. Дополнительно перегрузить следующие
+операции: + - добавить элемент в стек; -- - извлечь элемент из
+стека; bool() - проверка, пустой ли стек; > - копирование
+одного стека в другой с сортировкой в возрастающем порядке*/
+
+#ifndef _STACKNODE_H_
+#define _STACKNODE_H_
+
+#include <string>
+using namespace std;
+template<class T>
+class Stack
+{
+	
+public:
+	//operator bool();
+	Stack() :tail(0), head(0)
+	{
+	}
+
+	~Stack()
+	{
+		while (head)
+		{
+			tail = head->next;
+			delete head;
+			head = tail;
+		}
+	}
+	/*Stack::operator bool()
+	{
+		return true;
+	}*/
+	friend Stack operator + (Stack &R, const char s)
+	{		R.push(s);		return R;	}
+	friend Stack operator -- (Stack &R)
+	{		cout << R.top() << '\n';		R.pop();		return R;	}
+
+	friend Stack operator > (Stack &R, Stack &R2)
+	{		cout << R.top() << '\n';		R.pop();		return R;	}
+
+	
+	void push(T val)
+	{
+		Node* Temp;
+		Temp = new Node;
+		Temp->elem = val;
+		if (tail == 0)
+		{
+			tail = Temp;
+		}
+		else
+		{
+			Temp->next = tail;
+			tail = Temp;
+		}
+	}
+
+	T top()
+	{
+		if (tail == 0)
+		{
+			throw std::string("Stack is empty!");
+		}
+		return tail->elem;
+	}
+
+	void pop()
+	{
+		if (tail == 0)
+		{
+			throw std::string("Stack is empty!");
+		}
+		Node* delptr = tail;
+		tail = tail->next;
+		delete delptr;
+	}
+	int pro( Stack R){
+		int ss = 0, i = 0; int s[10];
+		do{
+			ss++;
+			Node* delptr = tail;
+		//Node* delptr = tail1;
+		tail = tail->next;
+		s[i] = tail->elem;
+		
+		i++;
+		} while (tail != 0);
+		cout << ss<<"\n\n\n\n\n\n";
+		//cout << s;
+		for (int n = 0; n < ss; n++){ cout << s[n] << endl; R.push(s[n]); }
+
+		//Node* delptr = tail1;
+		//tail->next = tail1;
+		return ss;
+	}
+
+	void print()
+	{
+		if (tail == 0)
+		{
+			throw std::string("Stack is empty!");
+		}
+		for (Node* ptr = tail; ptr != 0; ptr = ptr->next)
+		{
+			std::cout << ptr->elem << ' ';
+		}
+		std::cout << '\n';
+	}
+private:
+	struct Node
+	{
+		Node() :elem(0), next(0)
+		{
+		}
+		Node* next;
+		T elem;
+	};
+	Node* head;
+	Node* tail;
+	Node* tail1;
+};
+
+#endif

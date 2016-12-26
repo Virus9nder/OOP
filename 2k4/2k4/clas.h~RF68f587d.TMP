@@ -1,0 +1,137 @@
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Inspector;
+
+class Curator;
+
+
+class Something{
+public:
+
+	//virtual void setCalories(int )=0;
+	virtual void toConsole() = 0;
+	//virtual int getCalories() = 0;
+};
+class WORLD :public Something
+{
+public:
+};
+class Printer{
+public:
+	void iAmPrinting(Something *someobj){
+		cout << typeid(someobj).name() << endl;
+		someobj->toConsole();
+	}
+};
+
+class more :public WORLD
+{
+	int size;
+	const int *NumberOfObject;
+	
+public:
+	void toConsole(){ cout << typeid(this).name() << "" << size << endl; }
+	//more(void);
+	void changeNum(){
+		*const_cast<int*>(NumberOfObject) = 5;
+		cout << *NumberOfObject << endl;
+	}
+	more(void){
+		int iii = 3; 
+		cout << "вызывается конструктор моря" << endl;
+		NumberOfObject = &iii;
+
+		//*const_cast<int*>(NumberOfObject) = 5;
+		//cout << *NumberOfObject << endl;
+	};
+
+	void setsize(int size);
+	void getsize();
+	~more(void);
+};
+class ostr :
+	public more
+{
+	char *name;
+public:
+	void toConsole(){ cout << typeid(this).name() << "" << *name << endl; }
+	friend Inspector;
+	friend Curator;
+	//void toConsole(){ cout << get() << "" << endl; }
+	ostr(void);
+
+	void setname(char *name);
+	void getname();
+	ostr(char *n){ name = n; }
+	~ostr(void);
+};
+class susha :public WORLD
+{
+	int size;
+public:
+	//void toConsole(){ cout << 4 << "" << endl; }
+	void toConsole(){ cout << typeid(this).name() << "" << size << endl; }
+	susha(void);
+	void setsize(int size);
+	void getsize();
+	~susha(void);
+};
+class kont :
+	public susha
+{
+	
+	char *name;
+
+public:
+	kont(void);
+	void setname(char *name);
+	void getname();
+	
+	~kont(void);
+};
+static int c1;
+class gos :
+	public kont
+{
+
+	int nas;
+	char *name1;
+private:
+	static int counter;
+public:
+	//friend Inspector;
+	//friend Curator;
+	gos(void);
+ static int getCounter(){ return counter; }
+	void setnas(int nas);
+	void getnas();
+	gos(char *naz, int Nas){
+		*name1 = *naz;
+		nas = Nas; }
+	~gos(void);
+};
+ 
+
+class Curator
+{
+public:
+	void ICanModify(gos &any)
+	{
+		char *typ;
+		cout << "Enter new type of grain" << endl;
+		cin >> *typ;
+		any.setname(typ);
+	}
+};
+
+class Inspector
+{
+public:
+	void IKnowAll(gos& asd)
+	{
+		cout << "Private grain is: " << asd.name << endl;
+	}
+};

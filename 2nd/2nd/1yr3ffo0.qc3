@@ -1,0 +1,322 @@
+//#include "Point.h"
+#include <iostream>
+#include "Triple.h"
+#include <stdio.h>
+#include <math.h>
+
+using namespace std;
+
+Triple::Triple()
+{
+	A.X=3;
+	A.Y=3;
+	B.X=-3;
+	B.Y=-3;
+	C.X=-3;
+	C.Y=3;
+}
+
+Triple::Triple(double x1, double y1, double x2, double y2, double x3, double y3)
+{
+	if(setPointA(x1, y1)){}
+	else
+	{
+		setPointA(3,3);
+	}
+	if(setPointB(x2,y2)){}
+	else
+	{
+		setPointB(-3, -3);
+	}
+	if(setPointC(x3, y3)){}
+	else
+	{
+		setPointC(-3, 3);
+	}
+}
+
+Triple::Triple(bool a)
+{
+	int x1, y1;
+	int x2, y2;
+	int x3, y3;
+	do
+	{
+		cout << "Enter A coordinates: " << endl;
+		cout << " X: "; cin >> x1; cout << " Y: "; cin >> y1;
+		cout << "Enter B coordinates: " << endl;
+		cout << " X: "; cin >> x2; cout << " Y: "; cin >> y2;
+		cout << "Enter C coordinates: " << endl;
+		cout << " X: "; cin >> x3; cout << " Y: "; cin >> y3;
+	}while((!setPointA(x1, y1)) && (!setPointA(x2, y2)) && (!setPointA(x3, y3)));
+}
+
+void Triple::getPointA()
+{
+	cout << "Point A:" << endl;
+	cout << "X: " << A.X << endl;
+	cout << "Y: " << A.Y << endl;
+}
+
+void Triple::getPointB()
+{
+	cout << "Point B:" << endl;
+	cout << "X: " << B.X << endl;
+	cout << "Y: " << B.Y << endl;
+}
+
+void Triple::getPointC()
+{
+	cout << "Point C:" << endl;
+	cout << "X: " << C.X << endl;
+	cout << "Y: " << C.Y << endl;
+}
+
+bool Triple::setPointA(double x, double y)
+{
+	if(A.X==x && A.Y==y)
+	{
+		return false;
+	}
+	else
+	{
+		A.X=x;
+		A.Y=y;
+		return true;
+	}
+}
+
+bool Triple::setPointB(double x, double y)
+{
+	if(B.X==x && B.Y==y)
+	{
+		return false;
+	}
+	else
+	{
+		B.X=x;
+		B.Y=y;
+		return true;
+	}
+}
+
+bool Triple::setPointC(double x, double y)
+{
+	if(C.X==x && C.Y==y)
+	{
+		return false;
+	}
+	else
+	{
+		C.X=x;
+		C.Y=y;
+		return true;
+	}
+}
+
+Triple* Triple::Create()
+{
+	return new Triple(true);
+}
+
+void Triple::Print()
+{
+	cout << "This Triple's coordinates: " << endl;
+	getPointA();
+	getPointB();
+	getPointC();
+}
+
+double Triple::getAB()
+{
+	return ceil(1*(sqrt(pow((B.X-A.X), 2)+pow((B.Y-A.Y),2)))/1.0);
+}
+
+double Triple::getAC()
+{
+	return ceil(1*(sqrt(pow((C.X-A.X), 2)+pow((C.Y-A.Y),2)))/1.0);
+}
+
+double Triple::getBC()
+{
+	return ceil(1*(sqrt(pow((C.X-B.X), 2)+pow((C.Y-B.Y),2)))/1.0);
+}
+
+double Triple::getSquare()
+{
+	double p;
+	p=getAB()+getAC()+getBC();
+	return (sqrt(p*(p-getAC())*(p-getBC())*(p-getAB())));
+}
+
+bool Triple::is90()
+{
+	double h = 0.2;
+	if (((pow(getAB(), 2) + pow(getAC(), 2) + h*getBC()>pow(getBC(), 2))) && (((pow(getAB(), 2) + pow(getAC(), 2) - h<pow(getBC(), 2))) || ((pow(getAB(), 2) + pow(getBC(), 2) + h> pow(getAC(), 2)) && (((pow(getAB(), 2) + pow(getBC(), 2) - h< pow(getAC(), 2)))) || (pow(getAC(), 2) + pow(getBC(), 2) + h>pow(getAB(), 2)) && (pow(getAC(), 2) + pow(getBC(), 2) - h< pow(getAB(), 2)))))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	return false;
+}
+
+bool Triple::isEqual()
+{
+	if(getAB()==getAC() && getAB()==getBC())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Triple::is2()
+{
+	if(getAB()==getAC() || getAB()==getBC() || getBC()==getAC())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Triple::isRandom()
+{
+	if((!is90()) && (!isEqual()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Triples(Triple *triple, int k)
+{
+	int equal=0;
+	int is90=0;
+	int random=0;
+	int is2=0;
+	Triple GroupE[5];
+	Triple Group90[5];
+	Triple GroupRandom[5];
+	Triple Group2[5];
+	for(int i=0; i<k; i++)
+	{
+		if(triple[i].is90())
+		{
+			Group90[is90].Copy(triple[i]);
+			is90++;
+		}
+		if(triple[i].isEqual())
+		{
+			GroupE[equal].Copy(triple[i]);
+			equal++;
+		}
+		if(triple[i].isRandom())
+		{
+			GroupRandom[random].Copy(triple[i]);
+			random++;
+		}
+		if(triple[i].is2())
+		{
+			Group2[is2].Copy(triple[i]);
+			is2++;
+		}
+		cout << "pryamougolnih: " << is90 << endl;
+		cout << "ravnostoronih: " << equal << endl;
+		cout << "ravnobedrennih: " << is2 <<endl;
+		cout << "sluchainih: " << random << endl;
+	}
+	if(is90)
+	{
+		double min=Group90[0].getSquare();
+		double max=Group90[0].getSquare();
+		for(int i=1; i<is90; i++)
+		{
+			if(Group90[i].getSquare()<min)
+			{
+				min=Group90[i].getSquare();
+			}
+			if(Group90[i].getSquare()>max)
+			{
+				max=Group90[i].getSquare();
+			}
+		}
+		cout << "For pryamougolnih: " << endl;
+		cout << "Max: " << max << endl;
+		cout << "Min: " << min << endl;
+	}
+	if(equal)
+	{
+		double min=GroupE[0].getSquare();
+		double max=GroupE[0].getSquare();
+		for(int i=1; i<equal; i++)
+		{
+			if(GroupE[i].getSquare()<min)
+			{
+				min=GroupE[i].getSquare();
+			}
+			if(GroupE[i].getSquare()>max)
+			{
+				max=GroupE[i].getSquare();
+			}
+		}
+		cout << "For ravnostoronih: " << endl;
+		cout << "Max: " << max << endl;
+		cout << "Min: " << min << endl;
+	}
+	if(is2)
+	{
+		double min=Group2[0].getSquare();
+		double max=Group2[0].getSquare();
+		for(int i=1; i<is2; i++)
+		{
+			if(Group2[i].getSquare()<min)
+			{
+				min=Group2[i].getSquare();
+			}
+			if(Group2[i].getSquare()>max)
+			{
+				max=Group2[i].getSquare();
+			}
+		}
+		cout << "For ravnobedrennih: " << endl;
+		cout << "Max: " << max << endl;
+		cout << "Min: " << min << endl;
+	}
+	if(random)
+	{
+		double min=GroupRandom[0].getSquare();
+		double max=GroupRandom[0].getSquare();
+		for(int i=1; i<random; i++)
+		{
+			if(GroupRandom[i].getSquare()<min)
+			{
+				min=GroupRandom[i].getSquare();
+			}
+			if(GroupRandom[i].getSquare()>max)
+			{
+				max=GroupRandom[i].getSquare();
+			}
+		}
+		cout << "For sluchainih: " << endl;
+		cout << "Max: " << max << endl;
+		cout << "Min: " << min << endl;
+	}
+}
+
+void Triple::Copy(Triple &t)
+{
+	t.A=this->A;
+	t.B=this->B;
+	t.C=this->C;
+}

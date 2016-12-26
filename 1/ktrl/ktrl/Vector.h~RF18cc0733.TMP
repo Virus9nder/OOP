@@ -1,0 +1,25 @@
+template<class T> // T - параметр шаблона 
+class Vector
+{
+public:
+	Vector();
+	Vector(int n) { data = new T[n]; size = n; }; // Конструктор класса vector 
+	~Vector() // Деструктор 
+	{
+		delete[] data;
+	}
+
+	T *data; // Начало одномерного массива 
+	int size; // Количество элементов в массиве 
+	
+	int &operator +=(Vector &R)
+	{
+		
+		R.size + 1;
+		return size;
+	}
+	//Void operator +=(Vector &R,int s){ ++R.size; };
+	friend Vector operator + (Vector &R, int s)
+	{		R.data += s;		R.size + 1;		return R;	}
+
+};

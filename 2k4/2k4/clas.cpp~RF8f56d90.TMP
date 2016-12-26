@@ -1,0 +1,165 @@
+#include "StdAfx.h"
+#include "clas.h"
+#include <iostream>
+using namespace std;
+int gos::counter = 0;
+//	more::more(void)
+//	{
+//		cout << "вызывается конструктор моря" << endl;
+//	}
+	void more::setsize(int size)
+	{
+		this->size = size;
+	}
+	void more::getsize()
+	{
+		cout << " Море составляет  " << this->size << " % " << endl;
+	}
+	more::~more(void)
+	{
+		//cout << "вызывается деструктор моря" << endl;
+	}
+
+
+	kont::kont(void)
+	{
+		//cout << "вызывается конструктор континента" << endl;
+		
+	}
+	void kont::setname(char *name)
+	{
+		this->name = name;
+	}
+	void kont::getname()
+	{
+		cout << "Название континента: " << this->name << endl;
+	}
+	kont::~kont(void)
+	{
+		//cout << "вызывается деструктор континента" << endl;
+		
+	}
+	kont::F1::F1()
+	{
+		
+		//Chislo = 13;
+	}
+	bool kont::Check()
+	{
+		if (S.getChislo() > 10){
+			cout << "Число больше 10";
+			return 1;
+		}
+		else
+			cout << "Число меньше 10";
+		return 0;
+	}
+
+
+	int kont::F1::setChislo(int C)
+	{
+		this->Chislo = C;
+		return C;
+	}
+
+	/*void kont::F1::setChislo(int C)
+	{
+		if (C > 0)
+		{
+			Chislo = C;
+		}
+		else
+		{
+			Chislo = 50;
+		}
+	}*/
+
+
+
+
+	void kont::F1::Vizov(kont &obj)
+	{
+
+		obj.VivodStr();
+	}
+
+
+
+
+
+
+	susha::susha(void)
+	{
+		//cout << "вызывается конструктор суши" << endl;
+	}
+	void susha::setsize(int size)
+	{
+		this->size = size;
+	}
+	void susha::getsize()
+	{
+		cout << " Размер " << this->size << endl;
+	}
+	susha::~susha(void)
+	{
+	//	cout << "вызывается деструктор суши" << endl;
+	}
+
+
+
+	gos::gos(void)
+	{
+	//	cout << "вызывается конструктор государства" << endl;
+		counter++;
+	}
+	void gos::setnas(int nas)
+	{
+		this->nas = nas;
+	}
+	void gos::getnas()
+	{
+		cout << "Количество людей: " << this->nas << " тысяч человек" << endl;
+	}
+	gos::~gos(void)
+	{
+	//	cout << "вызывается деструктор государства" << endl;
+		counter--;
+	}
+
+
+
+
+	ostr::ostr(void)
+	{
+		cout << "вызывается конструктор острова" << endl;
+	}
+	void ostr::setname(char *name)
+	{
+		this->name = name;
+	}
+	void ostr::getname()
+	{
+		cout << " Название острова: " << this->name << endl;
+	}
+	ostr::~ostr(void)
+	{
+		cout << "вызывается деструктор острова" << endl;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

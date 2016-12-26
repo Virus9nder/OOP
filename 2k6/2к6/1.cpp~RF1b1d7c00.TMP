@@ -1,0 +1,38 @@
+/*Класс - стек Stack. Дополнительно перегрузить следующие
+операции: + - добавить элемент в стек; -- - извлечь элемент из
+стека; bool() - проверка, пустой ли стек; > - копирование
+одного стека в другой с сортировкой в возрастающем порядке*/
+
+#include <iostream>
+
+#include "Stack.h"
+using namespace std;
+int main()
+{
+	Stack<char> St;
+	St.push('a');
+	St.push('b');
+	St.push('d');
+	St.push('c');
+	try
+	{
+		St.print();
+		cout << St.top() << '\n';
+		St.pop();
+		St.print();
+		cout << St.top() << '\n';
+		St.pop();
+		St.print();
+		cout << St.top() << '\n';
+		St.pop();
+		St.print();
+		cout << St.top() << '\n';
+		St.pop();
+		St.print();
+	}
+	catch (const string& e)
+	{
+		cout << e << '\n';
+	}
+	return 0;
+}

@@ -1,0 +1,15 @@
+﻿Сборка начата 19.11.2016 10:49:12.
+     1>Проект "C:\Users\Katya\Desktop\2 курс\сс\Laba_5_K - копия\Laba_5_K\Laba_5_K.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\Laba_5_K.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Laba_5_K.cpp
+         Laba_5_K.cpp
+     1>c:\users\katya\desktop\2 курс\сс\laba_5_k - копия\laba_5_k\laba_5_k.cpp(13): warning C4101: k: неиспользованная локальная переменная
+       Link:
+         E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Katya\Desktop\2 курс\сс\Laba_5_K - копия\Debug\Laba_5_K.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Katya\Desktop\2 курс\сс\Laba_5_K - копия\Debug\Laba_5_K.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Katya\Desktop\2 курс\сс\Laba_5_K - копия\Debug\Laba_5_K.lib" /MACHINE:X86 Debug\Laba_5_K.obj
+         Debug\stdafx.obj
+         Laba_5_K.vcxproj -> C:\Users\Katya\Desktop\2 курс\сс\Laba_5_K - копия\Debug\Laba_5_K.exe
+     1>Сборка проекта "C:\Users\Katya\Desktop\2 курс\сс\Laba_5_K - копия\Laba_5_K\Laba_5_K.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:07.70
